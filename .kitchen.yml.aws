@@ -1,0 +1,29 @@
+---
+driver:
+  name: ec2
+  aws_ssh_key_id: bdausses_sa
+  region: us-west-2
+  require_chef_omnibus: true
+  instance_type: t2.micro
+  associate_public_ip: true
+
+transport:
+  ssh_key: ~/.ssh/id_rsa
+  connection_timeout: 10
+  connection_retries: 5
+
+platforms:
+  - name: centos-7
+
+verifier:
+  name: inspec
+  format: documentation
+
+suites:
+  - name: default
+    run_list:
+      - recipe[cylance-agent::default]
+    verifier:
+      inspec_tests:
+        - test/smoke/default
+    attributes:
