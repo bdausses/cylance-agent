@@ -9,28 +9,17 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-jobs:
-- job: BuildJob
-  steps:
-  - script: echo Building!
-- job: TestOnWindows
-  steps:
-  - script: echo Testing on Windows!
-- job: TestOnLinux
-  steps:
-  - script: echo Testing on Linux!
+steps:
+#- task: chef-software.vsts-chef-tasks.vsts-chef-task-install-chefdk.vsts-chef-task-install-chefdk@1
+#  displayName: 'Install ChefDK (Current)'
+#  inputs:
+#    chefDKForceInstall: true
 
-# steps:
-# #- task: chef-software.vsts-chef-tasks.vsts-chef-task-install-chefdk.vsts-chef-task-install-chefdk@1
-# #  displayName: 'Install ChefDK (Current)'
-# #  inputs:
-# #    chefDKForceInstall: true
-#
-# - task: vsts-chef-task-install-chefdk@1
-#   displayName: 'Install ChefDK (Current)'
-#   inputs:
-#     chefDKForceInstall: true
-#
+- task: vsts-chef-task-install-chefdk@1
+  displayName: 'Install ChefDK (Current)'
+  inputs:
+    chefDKForceInstall: true
+
 # - task: vsts-chef-task-test-kitchen@1
 #   inputs:
 #     tkAzureEndpoint: 'Solutions Architecture(b02e675a-cee0-49bd-a056-daa7ed05bf4e)'
