@@ -22,6 +22,5 @@ steps:
 
 - task: vsts-chef-task-test-kitchen@1
   inputs:
-    tkAzureEndpoint: 'Solutions Architecture(b02e675a-cee0-49bd-a056-daa7ed05bf4e)'
     tkCommand: 'test'
     tkKitchenFile: '.kitchen.yml'
