@@ -10,59 +10,38 @@ pool:
   vmImage: 'ubuntu-latest'
 
 stages:
-- stage: Prep Build Agent
+- stage: Build
   jobs:
-  - job: Install ChefDK
+  - job: BuildJob
     steps:
-    - task: vsts-chef-task-install-chefdk@1
-      displayName: 'Install ChefDK (Current)'
-      inputs:
-        chefDKForceInstall: true
-
-# - stage: Test Cookbook
-#   - task: vsts-chef-task-test-kitchen@1
-#     displayName: 'Test Kitchen - converge'
-#     inputs:
-#       tkAzureEndpoint: 'Solutions Architecture(b02e675a-cee0-49bd-a056-daa7ed05bf4e)'
-#       tkCommand: 'converge'
-#       tkKitchenFile: '.kitchen.yml'
+    - script: echo Building!
+- stage: Test
+  jobs:
+  - job: TestOnWindows
+    steps:
+    - script: echo Testing on Windows!
+  - job: TestOnLinux
+    steps:
+    - script: echo Testing on Linux!
+- stage: Deploy
+  jobs:
+  - job: Deploy
+    steps:
+    - script: echo Deploying the code!
 #
+# steps:
+# #- task: chef-software.vsts-chef-tasks.vsts-chef-task-install-chefdk.vsts-chef-task-install-chefdk@1
+# #  displayName: 'Install ChefDK (Current)'
+# #  inputs:
+# #    chefDKForceInstall: true
 #
-# - stage: Prep Build Agent
-#   jobs:
-#   - job: Install ChefDK
-#     steps:
-#     - task: vsts-chef-task-install-chefdk@1
-#       displayName: 'Install ChefDK (Current)'
-#       inputs:
-#         chefDKForceInstall: true
-#
-#
-#
-#
-#
-#
-#
-#
-#
+# - task: vsts-chef-task-install-chefdk@1
+#   displayName: 'Install ChefDK (Current)'
+#   inputs:
+#     chefDKForceInstall: true
 #
 # - task: vsts-chef-task-test-kitchen@1
-#   displayName: 'Test Kitchen - converge'
 #   inputs:
 #     tkAzureEndpoint: 'Solutions Architecture(b02e675a-cee0-49bd-a056-daa7ed05bf4e)'
-#     tkCommand: 'converge'
-#     tkKitchenFile: '.kitchen.yml'
-#
-# - task: vsts-chef-task-test-kitchen@1
-#   displayName: 'Test Kitchen - verify'
-#   inputs:
-#     tkAzureEndpoint: 'Solutions Architecture(b02e675a-cee0-49bd-a056-daa7ed05bf4e)'
-#     tkCommand: 'verify'
-#     tkKitchenFile: '.kitchen.yml'
-#
-# - task: vsts-chef-task-test-kitchen@1
-#   displayName: 'Test Kitchen - destroy'
-#   inputs:
-#     tkAzureEndpoint: 'Solutions Architecture(b02e675a-cee0-49bd-a056-daa7ed05bf4e)'
-#     tkCommand: 'destroy'
+#     tkCommand: 'test'
 #     tkKitchenFile: '.kitchen.yml'
