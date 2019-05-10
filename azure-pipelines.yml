@@ -10,7 +10,18 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: chef-software.vsts-chef-tasks.vsts-chef-task-install-chefdk.vsts-chef-task-install-chefdk@1
+#- task: chef-software.vsts-chef-tasks.vsts-chef-task-install-chefdk.vsts-chef-task-install-chefdk@1
+#  displayName: 'Install ChefDK (Current)'
+#  inputs:
+#    chefDKForceInstall: true
+
+- task: vsts-chef-task-install-chefdk@1
   displayName: 'Install ChefDK (Current)'
   inputs:
     chefDKForceInstall: true
+
+- task: vsts-chef-task-test-kitchen@1
+  inputs:
+    tkAzureEndpoint: 'Solutions Architecture(b02e675a-cee0-49bd-a056-daa7ed05bf4e)'
+    tkCommand: 'test'
+    tkKitchenFile: '.kitchen.yml'
