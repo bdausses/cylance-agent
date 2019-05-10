@@ -9,11 +9,12 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: vsts-chef-task-install-chefdk@1
+  inputs:
+    chefDKChannel: 'stable'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    - task: vsts-chef-task-test-kitchen@1
+      inputs:
+        tkAzureEndpoint: 'Solutions Architecture(b02e675a-cee0-49bd-a056-daa7ed05bf4e)'
+        tkCommand: 'test'
+        tkKitchenFile: '.kitchen.yml'
