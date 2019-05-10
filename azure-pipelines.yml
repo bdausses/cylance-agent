@@ -10,5 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: vsts-chef-task-install-chefdk@1
+- task: chef-software.vsts-chef-tasks.vsts-chef-task-install-chefdk.vsts-chef-task-install-chefdk@1
+  displayName: 'Install ChefDK (Current)'
   inputs:
+    chefDKForceInstall: true
