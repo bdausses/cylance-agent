@@ -11,12 +11,14 @@ pool:
 
 stages:
 - stage: Prep Build Agent
-  steps:
-  - task: vsts-chef-task-install-chefdk@1
-    displayName: 'Install ChefDK (Current)'
-    inputs:
-      chefDKForceInstall: true
-#
+  jobs:
+  - job: Install ChefDK
+    steps:
+    - task: vsts-chef-task-install-chefdk@1
+      displayName: 'Install ChefDK (Current)'
+      inputs:
+        chefDKForceInstall: true
+
 # - stage: Test Cookbook
 #   - task: vsts-chef-task-test-kitchen@1
 #     displayName: 'Test Kitchen - converge'
@@ -24,10 +26,22 @@ stages:
 #       tkAzureEndpoint: 'Solutions Architecture(b02e675a-cee0-49bd-a056-daa7ed05bf4e)'
 #       tkCommand: 'converge'
 #       tkKitchenFile: '.kitchen.yml'
-# #
-# #
-# #
-# #
+#
+#
+# - stage: Prep Build Agent
+#   jobs:
+#   - job: Install ChefDK
+#     steps:
+#     - task: vsts-chef-task-install-chefdk@1
+#       displayName: 'Install ChefDK (Current)'
+#       inputs:
+#         chefDKForceInstall: true
+#
+#
+#
+#
+#
+#
 #
 #
 #
