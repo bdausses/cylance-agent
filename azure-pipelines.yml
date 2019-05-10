@@ -9,12 +9,9 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-- task: vsts-chef-task-install-chefdk@1
+- task: Bash@3
   inputs:
-    chefDKChannel: 'stable'
-
-    - task: vsts-chef-task-test-kitchen@1
-      inputs:
-        tkAzureEndpoint: 'Solutions Architecture(b02e675a-cee0-49bd-a056-daa7ed05bf4e)'
-        tkCommand: 'test'
-        tkKitchenFile: '.kitchen.yml'
+    targetType: 'inline'
+    script: '# Write your commands here
+      echo "Hello WORLD!"
+      # Use the environment variables input below to pass secret variables to this script'
