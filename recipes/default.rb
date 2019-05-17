@@ -47,6 +47,6 @@ package 'CylancePROTECT' do
 end
 
 # Start and enable Cylance
-service 'cylancesvc' do
-  action [:enable, :start]
-end
+# service 'cylancesvc' do
+#   action [:enable, :start]
+# end
