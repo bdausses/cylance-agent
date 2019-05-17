@@ -40,7 +40,10 @@ steps:
 - task: vsts-chef-task-cookbook-version@1
   inputs:
     chefCookbookVersion: '$(Build.BuildNumber)'
-    chefCookbookMetadata: '$(Build.SourcesDirectory)/cookbooks/cylance-agent/metadata.rb'
+    chefCookbookMetadata: '$(Build.SourcesDirectory)/cookbooks/mycookbook/metadata.rb'
 
-
+- task: vsts-chef-task-cookbook-upload@1
+  inputs:
+    chefServerEndpoint: 'bdausses-test.chef-demo.com'
+    chefCookbookPath: '$(Build.SourcesDirectory)/cookbooks'
 
