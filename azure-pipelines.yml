@@ -36,3 +36,11 @@ steps:
     tkAzureEndpoint: 'Solutions Architecture(b02e675a-cee0-49bd-a056-daa7ed05bf4e)'
     tkCommand: 'destroy'
     tkKitchenFile: '.kitchen.yml'
+
+- task: vsts-chef-task-cookbook-version@1
+  inputs:
+    chefCookbookVersion: '$(Build.BuildNumber)'
+    chefCookbookMetadata: '$(Build.SourcesDirectory)/cookbooks/cylance-agent/metadata.rb'
+
+
+
