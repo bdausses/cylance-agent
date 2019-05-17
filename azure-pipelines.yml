@@ -17,7 +17,6 @@ steps:
 
 - task: vsts-chef-task-test-kitchen@1
   displayName: 'TestKitchen - converge'
-  continueOnError: true
   inputs:
     tkAzureEndpoint: 'Solutions Architecture(b02e675a-cee0-49bd-a056-daa7ed05bf4e)'
     tkCommand: 'converge'
@@ -25,7 +24,6 @@ steps:
 
 - task: vsts-chef-task-test-kitchen@1
   displayName: 'TestKitchen - verify'
-  continueOnError: true
   inputs:
     tkAzureEndpoint: 'Solutions Architecture(b02e675a-cee0-49bd-a056-daa7ed05bf4e)'
     tkCommand: 'verify'
@@ -33,7 +31,7 @@ steps:
 
 - task: vsts-chef-task-test-kitchen@1
   displayName: 'TestKitchen - destroy'
-  continueOnError: true
+  condition: always()
   inputs:
     tkAzureEndpoint: 'Solutions Architecture(b02e675a-cee0-49bd-a056-daa7ed05bf4e)'
     tkCommand: 'destroy'
